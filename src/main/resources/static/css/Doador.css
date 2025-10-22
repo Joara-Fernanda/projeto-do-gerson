@@ -1,0 +1,354 @@
+/* ======== LOGO E TÍTULO ======== */
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo-area img { width: 55px; }
+
+.logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+
+.logo-text h1 { margin: 0; font-size: 1.6rem; font-weight: 600; }
+
+.logo-text span { font-size: 0.9rem; opacity: 0.9; }
+
+/* ======== ÁREA SUPERIOR DIREITA ======== */
+.top-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  position: relative;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.15);
+  padding: 8px 12px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.user-info:hover { background: rgba(255,255,255,0.25); }
+
+.user-info i {
+  background: white;
+  color: #009739;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-info span { font-weight: 500; }
+
+.user-info .fa-chevron-down { font-size: 0.8rem; margin-left: 5px; }
+
+/* ======== MENU PERFIL ======== */
+#perfilMenu {
+  display: none;
+  position: absolute;
+  top: 55px;
+  right: 0;
+  background: white;
+  color: #333;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  min-width: 160px;
+  overflow: hidden;
+  z-index: 100;
+}
+
+#perfilMenu button {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 0.95rem;
+  cursor: pointer;
+  color: #333;
+  transition: background 0.2s;
+}
+
+#perfilMenu button:hover { background: #f3f3f3; }
+
+/* ======== TÍTULO PRINCIPAL ======== */
+main h2 { 
+  margin-top: 30px; 
+  font-size: 1.6rem; 
+  color: #154734; 
+  text-align: center; 
+}
+
+/* ======== GRID DE PRODUTOS ======== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ======== CARD DE PRODUTO ======== */
+.item {
+  background: #fff;
+  border: 1px solid #e4e4e4;
+  border-radius: 15px;
+  padding: 12px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  max-width: 220px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.item:hover { transform: scale(1.03); box-shadow: 0 4px 14px rgba(0,0,0,0.15); }
+
+.item img { width: 100%; border-radius: 10px; max-height: 150px; object-fit: cover; }
+
+.item h3 { font-size: 1rem; color: #154734; margin: 8px 0 4px; }
+
+.item p { font-size: 0.85rem; color: #555; min-height: 36px; }
+
+/* ======== BOTÃO APAGAR ======== */
+.apagar {
+  padding: 6px 12px;
+  background: #d9534f;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: 6px;
+  border: none;
+  transition: background 0.3s ease;
+}
+
+.apagar:hover { background: #b52b27; }
+
+/* ======== BOTÃO POSTAR PRODUTO NO CARD ======== */
+.card-postar-btn {
+  padding: 8px 16px;
+  background-color: #28a745; /* verde */
+  color: white;
+  font-weight: 500;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.95rem;
+  margin-top: 6px;
+}
+
+.card-postar-btn:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* ======== BOTÃO FLUTUANTE POSTAR PRODUTO ======== */
+#postarBtn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #009739;
+  color: white;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: transform 0.2s, background 0.3s;
+  z-index: 1000;
+}
+
+#postarBtn:hover { transform: scale(1.1); background-color: #007a2d; }
+
+/* ======== MODAL POSTAR PRODUTO ======== */
+#postarModal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0; top: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(2px);
+  transition: opacity 0.3s ease;
+}
+
+#postarModal.show { opacity: 1; }
+
+.modal-content {
+  background: #fff;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 450px;
+  position: relative;
+  transform: scale(0.7);
+  transition: transform 0.3s ease;
+  box-sizing: border-box;
+}
+
+#postarModal.show .modal-content { transform: scale(1); }
+body.dark .modal-content { background: #2b2f2d; color: #e0e0e0; }
+
+/* ======== FORMULÁRIO MODAL ESTILIZADO ======== */
+#postarModal form { display: flex; flex-direction: column; gap: 18px; }
+#postarModal .form-group { position: relative; }
+
+#postarModal input,
+#postarModal textarea,
+#postarModal select {
+  width: 100%;
+  padding: 12px;
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: none;
+  color: inherit;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  box-sizing: border-box;
+}
+
+#postarModal input:focus,
+#postarModal textarea:focus,
+#postarModal select:focus {
+  border-color: #009739;
+  box-shadow: 0 0 5px rgba(0, 151, 57, 0.5);
+  outline: none;
+}
+
+#postarModal label {
+  position: absolute;
+  top: 12px; left: 12px;
+  font-size: 0.9rem;
+  color: #999;
+  pointer-events: none;
+  transition: 0.3s ease all;
+}
+
+#postarModal input:focus + label,
+#postarModal textarea:focus + label,
+#postarModal select:focus + label,
+#postarModal input:not(:placeholder-shown) + label,
+#postarModal textarea:not(:placeholder-shown) + label,
+#postarModal select:not(:placeholder-shown) + label {
+  top: -8px;
+  left: 8px;
+  background: #fefefe;
+  padding: 0 4px;
+  font-size: 0.75rem;
+  color: #009739;
+}
+
+body.dark #postarModal label { background: #2b2f2d; color: #ccc; }
+
+#postarModal textarea { min-height: 70px; resize: vertical; }
+/* ======== BOTÃO FLUTUANTE RANKING ======== */
+#rankingBtn {
+  position: fixed;
+  bottom: 95px; /* acima do botão de postar produto */
+  right: 25px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #f39c12; /* laranja */
+  color: white;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: transform 0.2s, background 0.3s;
+  z-index: 1000;
+}
+
+#rankingBtn:hover { transform: scale(1.1); background-color: #e67e22; }
+
+/* ======== MODAL RANKING ======== */
+#rankingModal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0; top: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(2px);
+  transition: opacity 0.3s ease;
+}
+
+#rankingModal.show { opacity: 1; }
+
+#rankingModal .modal-content {
+  background: #fff;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 450px;
+  position: relative;
+  transform: scale(0.7);
+  transition: transform 0.3s ease;
+  box-sizing: border-box;
+}
+
+#rankingModal.show .modal-content { transform: scale(1); }
+
+body.dark #rankingModal .modal-content { background: #2b2f2d; color: #e0e0e0; }
+
+#rankingModal iframe { border-radius: 10px; width: 100%; height: 400px; }
+
+/* ================= BOTÃO MARCAR COMO DOADO ================= */
+.doado {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #007bff; /* azul padrão */
+  color: white;
+  font-weight: 600;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  font-family: 'Poppins', sans-serif;
+  margin-top: 6px;
+}
+
+.doado i {
+  font-size: 16px;
+}
+
+.doado:hover:not(:disabled) {
+  background-color: #0056b3; /* azul mais escuro no hover */
+  transform: translateY(-2px);
+}
+
+.doado:disabled {
+  background-color: #a0c4ff; /* azul claro quando desativado */
+  cursor: not-allowed;
+}

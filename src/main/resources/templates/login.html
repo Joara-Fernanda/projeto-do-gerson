@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - SolidarIF</title>
+
+  <!-- FONTES E ICONES -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto&display=swap" rel="stylesheet">
+
+  <!-- CSS EXTERNO -->
+  <link rel="stylesheet" href="/css/login.css">
+  <link rel="stylesheet" href="/css/global.css">
+</head>
+
+<body>
+<header>
+  <div class="logo-text">
+    <h1>SolidarIF</h1>
+    <span>Sistema de Doações do IFSP Itapetininga</span>
+  </div>
+  <button id="darkToggle" title="Alternar tema"><i class="fa-solid fa-moon"></i></button>
+</header>
+
+<main>
+  <div class="form-container">
+    <h1>Login</h1>
+
+    <form th:action="@{/login}" method="post">
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" th:name="email" placeholder="@aluno.ifsp.edu.br" required>
+      </div>
+
+      <div class="form-group">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" th:name="senha" placeholder="Digite sua senha" required>
+      </div>
+
+      <button type="submit" class="btn">Login</button>
+    </form>
+
+    <p th:text="${erro}" class="mensagem-erro"></p>
+    <p th:text="${mensagem}" class="mensagem-sucesso"></p>
+  </div>
+</main>
+
+<footer>
+  © 2025 - Instituto Federal de São Paulo - Campus Itapetininga
+</footer>
+
+<!-- JS EXTERNO -->
+<script src="/js/darkmode.js"></script>
+</body>
+</html>

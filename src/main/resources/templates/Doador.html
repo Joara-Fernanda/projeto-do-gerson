@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página do Doador</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/Doador.css">
+  <link rel="stylesheet" href="/css/global.css">
+</head>
+<body>
+
+<header>
+  <div class="logo-area">
+    <div class="logo-text">
+      <h1>SolidarIF</h1>
+      <span>Sistema de Doações do IFSP Itapetininga</span>
+    </div>
+  </div>
+
+  <div class="top-right">
+    <button id="darkToggle" title="Alternar tema"><i class="fa-solid fa-moon"></i></button>
+    <div class="user-info" onclick="togglePerfilMenu()">
+      <i class="fa-solid fa-user"></i>
+      <span th:text="${nome}">Doador</span>
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+    <div id="perfilMenu">
+      <button onclick="sair()">Sair da Conta</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <h2>Página do Doador</h2>
+
+
+  <div class="grid">
+    <div class="item" th:each="produto : ${produtos}">
+      <img th:if="${produto.imagem != null}" th:src="'data:image/jpeg;base64,' + ${produto.imagem}" th:alt="${produto.nome}">
+      <h3 th:text="${produto.nome}">Produto</h3>
+      <p th:text="${produto.descricao}">Descrição breve do produto.</p>
+      <p><strong>Turma:</strong> <span th:text="${produto.turma}">Turma</span></p>
+      <p><strong>Status:</strong> <span th:text="${produto.doado} ? 'Doado' : 'Disponível'">Disponível</span></p>
+
+      <!-- FORMULÁRIO DE APAGAR PRODUTO -->
+      <form th:action="@{/doador/apagar}" method="post" onsubmit="return confirm('Tem certeza que deseja apagar este produto?');">
+        <input type="hidden" name="produtoId" th:value="${produto.id}">
+        <input type="hidden" name="emailDoador" th:value="${email}">
+        <button type="submit" class="apagar"><i class="fa-solid fa-trash"></i> Apagar</button>
+      </form>
+
+      <!-- FORMULÁRIO MARCAR COMO DOADO -->
+      <form th:action="@{/doador/doado}" method="post">
+        <input type="hidden" name="produtoId" th:value="${produto.id}">
+        <input type="hidden" name="emailDoador" th:value="${email}">
+        <button type="submit" class="doado" th:disabled="${produto.doado}"><i class="fa-solid fa-check"></i> Marcar como Doado</button>
+      </form>
+    </div>
+  </div>
+</main>
+
+<!-- BOTÕES FLUTUANTES -->
+<div id="postarBtn" onclick="abrirPostarProduto()"><i class="fa-solid fa-camera"></i></div>
+<div id="rankingBtn" onclick="abrirRanking()"><i class="fa-solid fa-trophy"></i></div>
+
+<!-- MODAL POSTAR PRODUTO -->
+<div id="postarModal">
+  <div class="modal-content">
+    <span style="float:right; cursor:pointer;" onclick="fecharPostarProduto()">&times;</span>
+    <h2>Postar Produto</h2>
+    <form th:action="@{/doador/postar}" method="post" enctype="multipart/form-data">
+      <div class="form-group">
+        <input type="text" id="nome" name="nome" required placeholder=" ">
+        <label for="nome">Nome do Produto</label>
+      </div>
+
+      <div class="form-group">
+        <textarea id="descricao" name="descricao" required placeholder=" "></textarea>
+        <label for="descricao">Descrição</label>
+      </div>
+
+      <div class="form-group">
+        <select id="categoria" name="categoria" required>
+          <option value="" disabled selected hidden></option>
+          <option value="roupas">Roupas</option>
+          <option value="calçados">Calçados</option>
+          <option value="acessórios">Acessórios</option>
+          <option value="eletrônicos">Eletrônicos</option>
+          <option value="outros">Outros</option>
+        </select>
+        <label for="categoria">Categoria</label>
+      </div>
+
+      <div class="form-group">
+        <input type="text" id="telefoneDoador" name="telefoneDoador" required placeholder=" ">
+        <label for="telefoneDoador">WhatsApp do Doador</label>
+      </div>
+
+      <div class="form-group">
+        <select id="turma" name="turma" required>
+          <option value="" disabled selected hidden>Escolha a Turma</option>
+          <option value="Edificações">Edificações</option>
+          <option value="Informática">Informática</option>
+          <option value="Mecânica">Mecânica</option>
+          <option value="Eletromecânica">Eletromecânica</option>
+        </select>
+        <label for="turma">Turma</label>
+      </div>
+
+      <div class="form-group">
+        <input type="file" id="imagem" name="imagem" accept="image/*" required>
+        <label for="imagem">Imagem do Produto</label>
+      </div>
+
+      <input type="hidden" name="emailDoador" th:value="${email}">
+      <button type="submit">Postar Produto</button>
+    </form>
+  </div>
+</div>
+
+<!-- MODAL RANKING -->
+<div id="rankingModal">
+  <div class="modal-content">
+    <span style="float:right; cursor:pointer;" onclick="fecharRanking()">&times;</span>
+    <div id="rankingLista">
+      <iframe src="/ranking" style="width:100%; height:400px; border:none;"></iframe>
+    </div>
+  </div>
+</div>
+
+<footer>© 2025 - Instituto Federal de São Paulo - Campus Itapetininga</footer>
+
+<script src="/js/darkmode.js"></script>
+<script src="/js/perfil.js"></script>
+<script src="/js/Doador.js"></script>
+</body>
+</html>

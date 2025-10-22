@@ -1,0 +1,64 @@
+/* ======== CARD CONTAINER ======== */
+.card-ranking {
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-width: 420px;
+    margin: auto;
+    padding: 24px 20px;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ======== CABEÇALHO VERDE ======== */
+.card-ranking-header {
+    background-color: #1ba94c;
+    color: #ffffff;
+    padding: 16px;
+    border-radius: 12px 12px 0 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-align: center;
+    margin: -24px -20px 20px -20px;
+}
+
+/* ======== BOTÃO RESETAR - MENOR ======== */
+form[action="/ranking/resetar"] button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background-color: #b52b27;
+    color: white;
+    font-weight: 600;
+    padding: 6px 14px;              /* menor botão */
+    border: none;
+    border-radius: 6px;             /* bordas suaves */
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;             /* fonte menor */
+    transition: background-color 0.3s ease, transform 0.15s ease;
+    margin-top: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* ======== HOVER DO BOTÃO ======== */
+form[action="/ranking/resetar"] button:hover {
+    background-color: #a02523;
+    transform: translateY(-1px);
+}
+
+/* ======== ÍCONE NO BOTÃO (se usar font-awesome, por exemplo) ======== */
+form[action="/ranking/resetar"] button i {
+    font-size: 14px;
+}
+
+/* ======== RODAPÉ DO CARD ======== */
+.card-footer {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 24px;
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Página do Beneficiado</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/Beneficiado.css">
+<link rel="stylesheet" href="/css/global.css">
+</head>
+
+<body>
+<header>
+    <div class="logo-area">
+        <div class="logo-text">
+            <h1>SolidarIF</h1>
+            <span>Sistema de Doações do IFSP Itapetininga</span>
+        </div>
+    </div>
+    <div class="top-right">
+        <button id="darkToggle" title="Alternar tema"><i class="fa-solid fa-moon"></i></button>
+        <div class="user-info" onclick="togglePerfilMenu()">
+            <i class="fa-solid fa-user"></i>
+            <span th:text="${nome}">Emanuel</span>
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div id="perfilMenu">
+            <button onclick="sair()">Sair da Conta</button>
+        </div>
+    </div>
+</header>
+
+<main>
+    <h2>Página do Beneficiado</h2>
+    <section>
+        <form method="get" action="/beneficiado">
+            <input type="hidden" name="email" th:value="${email}">
+            <input type="text" name="q" placeholder="Buscar produtos..." th:value="${q}">
+            <select name="categoria">
+                <option value="">Todas as categorias</option>
+                <option value="roupas" th:selected="${categoria=='roupas'}">Roupas</option>
+                <option value="calçados" th:selected="${categoria=='calçados'}">Calçados</option>
+                <option value="acessórios" th:selected="${categoria=='acessórios'}">Acessórios</option>
+                <option value="eletrônicos" th:selected="${categoria=='eletrônicos'}">Eletrônicos</option>
+                <option value="outros" th:selected="${categoria=='outros'}">Outros</option>
+            </select>
+            <button type="submit">Buscar</button>
+        </form>
+    </section>
+
+    <div class="grid">
+        <div class="item" th:each="produto : ${produtos}">
+            <div class="img-container">
+                <img th:if="${produto.imagem != null}"
+                     th:src="'data:image/jpeg;base64,' + ${produto.imagem}"
+                     th:alt="${produto.nome}">
+                <div th:if="${produto.doado}" class="selo-doado">DOADO</div>
+            </div>
+      
+            <h3 th:text="${produto.nome}">Tênis</h3>
+            <p th:text="${produto.descricao}">Descrição breve do produto.</p>
+      
+            <a th:href="|https://wa.me/${produto.telefoneDoador}?text=Olá,%20vi%20seu%20anúncio%20no%20SolidarIF%20e%20fiquei%20interessado%20no%20produto%20${produto.nome}.|"
+               target="_blank"
+               class="whatsapp">
+                <i class="fa-brands fa-whatsapp"></i> Whatsapp
+            </a>
+        </div>
+      </div>
+      
+    </div>
+</main>
+
+<footer>
+    © 2025 - Instituto Federal de São Paulo - Campus Itapetininga
+</footer>
+<script src="/js/darkmode.js"></script>
+<script src="/js/perfil.js"></script>
+</body>
+</html>

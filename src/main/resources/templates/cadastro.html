@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro - SolidarIF</title>
+
+  <!-- FONTES E ICONES -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto&display=swap" rel="stylesheet">
+
+  <!-- CSS EXTERNO -->
+  <link rel="stylesheet" href="/css/cadastro.css">
+  <link rel="stylesheet" href="/css/global.css">
+</head>
+
+<body>
+<header>
+  <div class="logo-text">
+    <h1>SolidarIF</h1>
+    <span>Sistema de Doações do IFSP Itapetininga</span>
+  </div>
+  <button id="darkToggle" title="Alternar tema"><i class="fa-solid fa-moon"></i></button>
+</header>
+
+<main>
+  <div class="form-container">
+    <h1>Cadastre-se</h1>
+    <p>Já tem uma conta? <a th:href="@{/login}">(clique aqui para fazer login)</a></p>
+
+    <div th:if="${erro}" class="erro" th:text="${erro}"></div>
+
+    <form th:action="@{/cadastro}" method="post">
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" th:value="${nome}" placeholder="Digite seu nome" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" th:value="${email}" placeholder="@aluno.ifsp.edu.br" required>
+      </div>
+
+      <div class="form-group">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+      </div>
+
+      <div class="form-group">
+        <label for="tipo">Selecione</label>
+        <select id="tipo" name="tipo" required>
+          <option value="doador" th:selected="${tipo == 'doador'}">Doador</option>
+          <option value="beneficiado" th:selected="${tipo == 'beneficiado'}">Beneficiado</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn">Criar</button>
+    </form>
+  </div>
+</main>
+
+<footer>
+  © 2025 - Instituto Federal de São Paulo - Campus Itapetininga
+</footer>
+
+<!-- JS EXTERNO -->
+<script src="/js/darkmode.js"></script>
+</body>
+</html>
